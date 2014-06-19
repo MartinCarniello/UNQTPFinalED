@@ -1,53 +1,62 @@
 #include <iostream>
-#include "LinkedList.h"
-#include "CharBag.h"
-#include "HuffmanTree.h"
-#include "PriorityQueue.h"
+#include "LinkedList.test.h"
+#include "CharBag.test.h"
+#include "HuffmanTree.test.h"
+#include "PriorityQueue.test.h"
 
 using namespace std;
 
 int main() {
 
-//    List l = Nil();
-//    mkSnoc('a', l);
-//    mkSnoc('b', l);
-//    mkSnoc('c', l);
-//
-//    printList(l);
-//
-//    deleteList(l);
+    int passedTests = 0;
 
-//    CharBag bag = emptyCharBag(26);
-//    add(bag, 'a');
-//    add(bag, 'b');
-//    add(bag, 'a');
-//    add(bag, 'c');
-//    add(bag, 'c');
-//
-//    CharBagIterator iterator = iterate(bag);
-//    while(valid(iterator)) {
-//        cout << "La cantidad de ocurrencias de " << currentChar(iterator) << " es " << currentCount(iterator) << endl;
-//        next(iterator);
-//    }
-//
-//    deleteCharBagIterator(iterator);
+    cout << "Corrida de tests" << endl << endl;
+    cout << "TESTS DE LISTA" << endl << endl;
 
-    HuffmanTree leaf1 = leaf('a', 4);
-    HuffmanTree leaf2 = leaf('b', 5);
-    HuffmanTree tree1 = binary(leaf1, leaf2);
+    passedTests += testNil();
+    passedTests += testIsNil();
+    passedTests += testHead();
+    passedTests += testMkSnoc();
+    passedTests += testSizeList();
 
-    HuffmanTree leaf3 = leaf('c', 2);
-    HuffmanTree leaf4 = leaf('d', 3);
-    HuffmanTree tree2 = binary(leaf3, leaf4);
+    cout << endl;
+    cout << "TESTS DE ITERADOR DE LISTA" << endl << endl;
 
-//    cout << "El peso del arbol 1 es: " << weight(tree1) << endl;
-//    cout << "El peso del arbol 2 es: " << weight(tree2) << endl;
+    passedTests += testGetCurrent();
+    passedTests += testFinished();
+    passedTests += testNext();
 
-    PriorityQueue pq = emptyPriorityQueue();
-    enqueue(pq, tree2);
-    enqueue(pq, tree1);
-    cout << "El peso del arbol 1 es: " << weight(dequeue(pq)) << endl;
-    cout << "El peso del arbol 2 es: " << weight(dequeue(pq)) << endl;
+    cout << endl;
+    cout << "TESTS DE CHARBAG" << endl << endl;
+
+    passedTests += testEmptyCharBag();
+    passedTests += testAddGet();
+
+    cout << endl;
+    cout << "TESTS DE ITERADOR DE CHARBAG" << endl << endl;
+
+    passedTests += testValid();
+    passedTests += testCurrentChar();
+    passedTests += testCurrentCount();
+
+    cout << endl;
+    cout << "TESTS DE HUFFMANTREE" << endl << endl;
+
+    passedTests += testLeaf();
+    passedTests += testBinary();
+    passedTests += testWeight();
+
+    cout << endl;
+    cout << "TESTS DE PRIORITYQUEUE" << endl << endl;
+
+    passedTests += testEmptyPriorityQueue();
+    passedTests += testSize();
+    passedTests += testEnqueue();
+    passedTests += testDequeue();
+
+    cout << endl;
+
+    cout << "Cantidad de tests pasados: " << passedTests << endl;
 
     return 0;
 }

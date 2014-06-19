@@ -22,15 +22,13 @@ void deleteCharBag(CharBag& b) {
 }
 
 void add(CharBag& b, char c) {
-    int position = (int)c - 97;
-    b -> allCharacters[position] = b -> allCharacters[position] + 1;
-    if(b -> allCharacters[position] == 1)
+    b -> allCharacters[(int)c] = b -> allCharacters[(int)c] + 1;
+    if(b -> allCharacters[(int)c] == 1)
         mkSnoc(c, b -> charactersToIterate);
 }
 
 int get(CharBag& b, char c) {
-    int position = (int)c - 97;
-    return b -> allCharacters[position];
+    return b -> allCharacters[(int)c];
 }
 
 
@@ -66,6 +64,5 @@ char currentChar(CharBagIterator it) {
 }
 
 int currentCount(CharBagIterator it) {
-    int position = (int)currentChar(it) - 97;
-    return it -> allCharacters[position];
+    return it -> allCharacters[(int)currentChar(it)];
 }

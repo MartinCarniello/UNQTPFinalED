@@ -57,6 +57,7 @@ void next(Recorrido& r) {
 }
 
 void finish(Recorrido& r) {
+    deleteList(r -> current;)
     delete(r);
 }
 

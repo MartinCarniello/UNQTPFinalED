@@ -67,9 +67,7 @@ void deleteZipTable(ZipTable& z) {
 }
 
 void add(ZipTable& z, char c, BitChain b) {
-    int position = (int)c - 97;
-	(*z->chains[position]) = *b;
-//  (*z->chains[c]) = *b;
+  (*z->chains[(int)c]) = *b;
 }
 
 void write(ZipTable z, char* filename) {
@@ -102,13 +100,12 @@ void compress(ZipTable z, char* sourceFile, char* targetReadableFile, char* targ
 	ofstream binary(targetBinaryFile, ofstream::binary);
 	vector<bool> buffer;
 	char c;
-	int position = (int)c - 97;
 	while (source.good()) {
 		source.get(c);
-		write(z->chains[position], target);
-		buffer.push_back(z->chains[position]);
-//		write(z->chains[c], target);
-//		buffer.push_back(z->chains[c]);
+		write(z->chains[(int)c], target);
+		buffer.push_back(z->chains[(int)c]);
+		write(z->chains[(int)c], target);
+		buffer.push_back(z->chains[(int)c]);
 		target << ' ';
 	}
 	c = 0;

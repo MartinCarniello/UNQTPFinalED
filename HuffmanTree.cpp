@@ -1,5 +1,6 @@
 #include "HuffmanTree.h"
 #include "LinkedListForTree.h"
+#include "ZipTable.h"
 
 //Invariante de representacion:
 //Puede ser hoja, por lo cual tiene un caracter asociado.
@@ -23,6 +24,10 @@ HuffmanTree singletonWithoutCharacter(int w, HuffmanTree left, HuffmanTree right
 
 bool isNil(HuffmanTree tree) {
     return tree == NULL;
+}
+
+bool isLeaf(HuffmanTree tree) {
+    return tree -> leftTree == NULL && tree -> rightTree == NULL;
 }
 
 HuffmanTree leaf(char c, int w) {
@@ -59,5 +64,21 @@ int weight(HuffmanTree t) {
     return t -> weight;
 }
 
-// Construye la tabla de compresión asociada al árbol de Huffman.
-ZipTable buildTable(HuffmanTree t);
+//ZipTable buildTable(HuffmanTree t) {
+//    BitChain bitChain = emptyBitChain();
+//    ZipTable table = emptyZipTable();
+//
+//    if(isLeaf(t)) {
+//        add(table, t -> character, bitChain);
+//    } else {
+//        if(!isNil(t -> leftTree)) {
+//            append(bitChain, false);
+//            buildTable(t -> leftTree);
+//        }
+//
+//        if(!isNil(t -> rightTree)) {
+//            append(bitChain, true);
+//            buildTable(t -> rightTree);
+//        }
+//    }
+//}

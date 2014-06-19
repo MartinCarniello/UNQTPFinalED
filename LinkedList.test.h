@@ -1,0 +1,9 @@
+int testNil();
+int testIsNil();
+int testTkTail();
+int testHead();
+int testMkSnoc();
+int testSizeList();
+int testGetCurrent();
+int testFinished();
+int testNext();

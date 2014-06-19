@@ -57,6 +57,7 @@ void next(RecorridoForTree& r) {
 }
 
 void finish(RecorridoForTree& r) {
+    deleteList(r -> current);
     delete(r);
 }
 
