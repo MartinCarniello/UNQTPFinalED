@@ -17,15 +17,3 @@ void mkSnoc(ELEM_TYPE x, ListForTree& xs);
 int size(ListForTree xs);
 void printList(ListForTree xs);
 void deleteList(ListForTree xs);
-
-
-struct RecorridoForTreeStr;
-typedef RecorridoForTreeStr* RecorridoForTree;
-
-RecorridoForTree initialize(ListForTree xs);
-ELEM_TYPE getCurrent(RecorridoForTree r);
-bool finished(RecorridoForTree r);
-void next(RecorridoForTree& r);
-void finish(RecorridoForTree& r);
-
-

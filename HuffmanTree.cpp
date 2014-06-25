@@ -2,6 +2,8 @@
 #include "LinkedListForTree.h"
 #include "ZipTable.h"
 
+#include <iostream>
+
 //Invariante de representacion:
 //Puede ser hoja, por lo cual tiene un caracter asociado.
 //Puede no ser hoja, por lo cual no tiene un caracter asociado.
@@ -17,8 +19,8 @@ struct HuffmanTreeStr {
 HuffmanTree singletonWithoutCharacter(int w, HuffmanTree left, HuffmanTree right) {
     HuffmanTree newTree = new HuffmanTreeStr;
     newTree -> weight = w;
-    newTree -> leftTree = NULL;
-    newTree -> rightTree = NULL;
+    newTree -> leftTree = left;
+    newTree -> rightTree = right;
     return newTree;
 }
 
@@ -27,7 +29,7 @@ bool isNil(HuffmanTree tree) {
 }
 
 bool isLeaf(HuffmanTree tree) {
-    return tree -> leftTree == NULL && tree -> rightTree == NULL;
+    return (isNil(tree -> leftTree)) && (isNil(tree -> rightTree));
 }
 
 HuffmanTree leaf(char c, int w) {
@@ -82,3 +84,29 @@ int weight(HuffmanTree t) {
 //        }
 //    }
 //}
+
+ZipTable buildTableAux(ZipTable zipTable, HuffmanTree tree, BitChain bitChain) {
+    //Si es hoja, termino el recorrido y agrego el caracter con su cadena a la tabla
+    if(isLeaf(tree)) {
+        add(zipTable, tree -> character, bitChain);
+    } else {
+        //Recorro el arbol izquierdo
+        append(bitChain, false);
+        buildTableAux(zipTable, tree -> leftTree, bitChain);
+        remove(bitChain);
+        //Recorro el arbol derecho
+        append(bitChain, true);
+        buildTableAux(zipTable, tree -> rightTree, bitChain);
+        remove(bitChain);
+    }
+
+    return zipTable;
+}
+
+ZipTable buildTable(HuffmanTree t) {
+    ZipTable zipTable = emptyZipTable();
+    BitChain bitChain = emptyBitChain();
+    //Llamo a una funcion auxiliar para que sea recursiva
+    return buildTableAux(zipTable, t, bitChain);
+}
+

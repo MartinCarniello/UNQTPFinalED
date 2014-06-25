@@ -21,13 +21,13 @@ void deleteCharBag(CharBag& b) {
     delete(b);
 }
 
-void add(CharBag& b, char c) {
+void add(CharBag& b, unsigned char c) {
     b -> allCharacters[(int)c] = b -> allCharacters[(int)c] + 1;
     if(b -> allCharacters[(int)c] == 1)
         mkSnoc(c, b -> charactersToIterate);
 }
 
-int get(CharBag& b, char c) {
+int get(CharBag& b, unsigned char c) {
     return b -> allCharacters[(int)c];
 }
 
@@ -56,7 +56,7 @@ bool valid(CharBagIterator it) {
 }
 
 void next(CharBagIterator it) {
-    next(it -> iterator);
+    nextList(it -> iterator);
 }
 
 char currentChar(CharBagIterator it) {

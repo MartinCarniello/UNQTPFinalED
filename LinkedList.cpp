@@ -52,12 +52,11 @@ bool finished(Recorrido r) {
     return isNil(r -> current);
 }
 
-void next(Recorrido& r) {
+void nextList(Recorrido& r) {
     r -> current = r -> current -> next;
 }
 
 void finish(Recorrido& r) {
-    deleteList(r -> current;)
     delete(r);
 }
 
@@ -66,7 +65,7 @@ int size(List xs) {
     int size = 0;
     while(!finished(recorrido)) {
         size++;
-        next(recorrido);
+        nextList(recorrido);
     }
 
     finish(recorrido);
@@ -77,10 +76,10 @@ void printList(List xs) {
     Recorrido recorrido = initialize(xs);
     if(!finished(recorrido)) {
         cout << "[" << getCurrent(recorrido);
-        next(recorrido);
+        nextList(recorrido);
         while(!finished(recorrido)) {
             cout << ", " << getCurrent(recorrido);
-            next(recorrido);
+            nextList(recorrido);
         }
         cout << "]";
     } else {
@@ -94,7 +93,7 @@ void deleteList(List xs) {
     Recorrido recorrido = initialize(xs);
     while(!finished(recorrido)) {
         List listaARemover = recorrido -> current;
-        next(recorrido);
+        nextList(recorrido);
         delete(listaARemover);
     }
 

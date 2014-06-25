@@ -1,7 +1,5 @@
-/**#include "CharBag.h"
+#include "CharBag.h"
 #include "PriorityQueue.h"
-#include "HuffmanTree.h"
-#include "ZipTable.h"
 
 #include <iostream>
 #include <vector>
@@ -18,7 +16,7 @@ typedef char* Buffer;
 ZipTable buildZipTable(int n, Buffer buffer) {
         CharBag bag = emptyCharBag(256);
         for (int i = 0; i < n; ++i)
-                add(bag, buffer[i]);
+            add(bag, buffer[i]);
 
         PriorityQueue queue = emptyPriorityQueue();
         CharBagIterator it = iterate(bag);
@@ -30,7 +28,7 @@ ZipTable buildZipTable(int n, Buffer buffer) {
         while (size(queue) > 1) {
                 HuffmanTree a = dequeue(queue);
                 HuffmanTree b = dequeue(queue);
-                enqueue(queue, binary(a,b));
+                enqueue(queue, binary(a, b));
         }
 
         HuffmanTree completeTree = dequeue(queue);
@@ -39,6 +37,7 @@ ZipTable buildZipTable(int n, Buffer buffer) {
 
         deleteCharBagIterator(it);
         deleteCharBag(bag);
+        cout << size(queue) << endl;
         deletePriorityQueue(queue);
         deleteHuffmanTree(completeTree);
 
@@ -80,6 +79,7 @@ int main() {
                 cout << "Empty file." << endl;
                 return 1;
         }
+
         ZipTable table = buildZipTable(n, buffer);
         write(table, "test.ztb");
         compress(table, "test.txt", "test.zip.txt", "test.zip.bin");
@@ -87,4 +87,3 @@ int main() {
         deleteZipTable(table);
         return 0;
 }
-**/

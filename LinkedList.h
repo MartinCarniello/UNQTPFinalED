@@ -24,6 +24,6 @@ typedef RecorridoStr* Recorrido;
 Recorrido initialize(List xs);
 ELEM_TYPE getCurrent(Recorrido r);
 bool finished(Recorrido r);
-void next(Recorrido& r);
+void nextList(Recorrido& r);
 void finish(Recorrido& r);
 

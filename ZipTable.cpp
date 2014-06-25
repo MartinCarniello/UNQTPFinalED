@@ -66,8 +66,8 @@ void deleteZipTable(ZipTable& z) {
 	delete z;
 }
 
-void add(ZipTable& z, char c, BitChain b) {
-  (*z->chains[(int)c]) = *b;
+void add(ZipTable& z, unsigned char c, BitChain b) {
+	(*z->chains[c]) = *b;
 }
 
 void write(ZipTable z, char* filename) {
@@ -102,10 +102,8 @@ void compress(ZipTable z, char* sourceFile, char* targetReadableFile, char* targ
 	char c;
 	while (source.good()) {
 		source.get(c);
-		write(z->chains[(int)c], target);
-		buffer.push_back(z->chains[(int)c]);
-		write(z->chains[(int)c], target);
-		buffer.push_back(z->chains[(int)c]);
+		write(z->chains[(unsigned char)c], target);
+		buffer.push_back(z->chains[(unsigned char)c]);
 		target << ' ';
 	}
 	c = 0;

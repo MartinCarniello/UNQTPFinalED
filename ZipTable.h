@@ -1,3 +1,4 @@
+
 // Tipo para cadenas de bits
 struct BitChainStr;
 typedef BitChainStr* BitChain;
@@ -29,7 +30,7 @@ ZipTable emptyZipTable();
 void deleteZipTable(ZipTable& z);
 
 // Agrega la asociación entre un caracter y su codificación en una cadena de bits
-void add(ZipTable& z, char c, BitChain b);
+void add(ZipTable& z, unsigned char c, BitChain b);
 
 // Escribe el contenido de la tabla a un archivo
 void write(ZipTable z, char* filename);

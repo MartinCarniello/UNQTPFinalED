@@ -6,57 +6,58 @@
 
 using namespace std;
 
-int main() {
-
-    int passedTests = 0;
-
-    cout << "Corrida de tests" << endl << endl;
-    cout << "TESTS DE LISTA" << endl << endl;
-
-    passedTests += testNil();
-    passedTests += testIsNil();
-    passedTests += testHead();
-    passedTests += testMkSnoc();
-    passedTests += testSizeList();
-
-    cout << endl;
-    cout << "TESTS DE ITERADOR DE LISTA" << endl << endl;
-
-    passedTests += testGetCurrent();
-    passedTests += testFinished();
-    passedTests += testNext();
-
-    cout << endl;
-    cout << "TESTS DE CHARBAG" << endl << endl;
-
-    passedTests += testEmptyCharBag();
-    passedTests += testAddGet();
-
-    cout << endl;
-    cout << "TESTS DE ITERADOR DE CHARBAG" << endl << endl;
-
-    passedTests += testValid();
-    passedTests += testCurrentChar();
-    passedTests += testCurrentCount();
-
-    cout << endl;
-    cout << "TESTS DE HUFFMANTREE" << endl << endl;
-
-    passedTests += testLeaf();
-    passedTests += testBinary();
-    passedTests += testWeight();
-
-    cout << endl;
-    cout << "TESTS DE PRIORITYQUEUE" << endl << endl;
-
-    passedTests += testEmptyPriorityQueue();
-    passedTests += testSize();
-    passedTests += testEnqueue();
-    passedTests += testDequeue();
-
-    cout << endl;
-
-    cout << "Cantidad de tests pasados: " << passedTests << endl;
-
-    return 0;
-}
+//int main() {
+//
+//    int passedTests = 0;
+//
+//    cout << "Corrida de tests" << endl << endl;
+//    cout << "TESTS DE LISTA" << endl << endl;
+//
+//    passedTests += testNil();
+//    passedTests += testIsNil();
+//    passedTests += testHead();
+//    passedTests += testMkSnoc();
+//    passedTests += testSizeList();
+//
+//    cout << endl;
+//    cout << "TESTS DE ITERADOR DE LISTA" << endl << endl;
+//
+//    passedTests += testGetCurrent();
+//    passedTests += testFinished();
+//    passedTests += testNext();
+//
+//    cout << endl;
+//    cout << "TESTS DE CHARBAG" << endl << endl;
+//
+//    passedTests += testEmptyCharBag();
+//    passedTests += testAddGet();
+//
+//    cout << endl;
+//    cout << "TESTS DE ITERADOR DE CHARBAG" << endl << endl;
+//
+//    passedTests += testValid();
+//    passedTests += testCurrentChar();
+//    passedTests += testCurrentCount();
+//
+//    cout << endl;
+//    cout << "TESTS DE HUFFMANTREE" << endl << endl;
+//
+//    passedTests += testLeaf();
+//    passedTests += testBinary();
+//    passedTests += testWeight();
+//    passedTests += testBuildTable();
+//
+//    cout << endl;
+//    cout << "TESTS DE PRIORITYQUEUE" << endl << endl;
+//
+//    passedTests += testEmptyPriorityQueue();
+//    passedTests += testSize();
+//    passedTests += testEnqueue();
+//    passedTests += testDequeue();
+//
+//    cout << endl;
+//
+//    cout << "Cantidad de tests pasados: " << passedTests << endl;
+//
+//    return 0;
+//}

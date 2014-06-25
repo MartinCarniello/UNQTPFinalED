@@ -6,7 +6,7 @@
 
 int testNil() {
     List lista = Nil();
-    assert(size(lista) == 0);
+    assert(isNil(lista));
     std::cout << "testNil - OK" << std::endl;
     return 1;
 }
@@ -50,7 +50,7 @@ int testMkSnoc() {
 
 int testSizeList() {
     List lista = Nil();
-    assert(size(lista) == 0);
+    assert(isNil(lista));
     mkSnoc('a', lista);
     assert(size(lista) == 1);
     mkSnoc('b', lista);
@@ -73,7 +73,7 @@ int testFinished() {
     mkSnoc('a', lista);
     Recorrido recorrido = initialize(lista);
     assert(!finished(recorrido));
-    next(recorrido);
+    nextList(recorrido);
     assert(finished(recorrido));
     std::cout << "testFinished - OK" << std::endl;
     return 1;
@@ -85,7 +85,7 @@ int testNext() {
     mkSnoc('b', lista);
     Recorrido recorrido = initialize(lista);
     assert(getCurrent(recorrido) == 'b');
-    next(recorrido);
+    nextList(recorrido);
     assert(getCurrent(recorrido) == 'a');
     std::cout << "testNext - OK" << std::endl;
     return 1;

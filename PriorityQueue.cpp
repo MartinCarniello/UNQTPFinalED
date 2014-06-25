@@ -1,4 +1,6 @@
 #include "PriorityQueue.h"
+#include <iostream>
+#include <stdlib.h>
 
 struct PriorityQueueStr {
     HuffmanTree* trees;
@@ -8,17 +10,21 @@ struct PriorityQueueStr {
 
 PriorityQueue emptyPriorityQueue() {
     PriorityQueue newPriorityQueue = new PriorityQueueStr;
-    newPriorityQueue -> capacity = 1;
+    newPriorityQueue -> capacity = 256;
+    newPriorityQueue -> position = 0;
     newPriorityQueue -> trees = new HuffmanTree[newPriorityQueue -> capacity + 1];
     newPriorityQueue -> trees[0] = leaf('a', 0);
-    newPriorityQueue -> position = 0;
     return newPriorityQueue;
 }
 
 void deletePriorityQueue(PriorityQueue& q) {
-    for(int i = 0; i < q -> capacity; i++)
-        deleteHuffmanTree(q -> trees[i]);
+//    for(int i = 0; i < q -> capacity; i++) {
+//        std::cout << "asd" << std::endl;
+//        std::cout << "Se borro el " << i << std::endl;
+//        deleteHuffmanTree(q -> trees[i]);
+//    }
 
+    delete[] q -> trees;
     delete(q);
 }
 
@@ -26,41 +32,45 @@ int size(PriorityQueue q) {
     return q -> position;
 }
 
-void resize(PriorityQueue& q) {
-    q -> capacity = q -> capacity * 2;
-    HuffmanTree* newTrees = new HuffmanTree[q -> capacity + 1];
-
-    for(int i = 1; i < (q -> capacity / 2 + 1); i++)
-        newTrees[i] = q -> trees[i];
-
-    delete[] q -> trees;
-    q -> trees = newTrees;
+bool isFull(PriorityQueue q) {
+  return size(q) == q -> capacity;
 }
 
 void enqueue(PriorityQueue& q, HuffmanTree tree) {
-    if(q -> capacity == q -> position)
-        resize(q);
+    int i;
 
-    int i = ++(q -> position);
+    if(isFull(q)) {
+        std::cout << "ERROR: " << size(q) << " == " << q -> capacity << std::endl;
+        exit(1);
+    }
+
+    i = ++(q -> position);
 
     while(weight(q -> trees[i/2]) > weight(tree)) {
-		q -> trees[i] = q -> trees[i/2];
-		i = i/2;
-	}
+        q -> trees[i] = q -> trees[i/2];
+        i = i/2;
+    }
 
-	q -> trees[i] = tree;
+    q -> trees[i] = tree;
 }
 
 //precondicion: La cola no debe ser vacia
 HuffmanTree dequeue(PriorityQueue& q) {
     int i, child;
-    HuffmanTree minElem = q -> trees[1];
-	HuffmanTree lastElem = q -> trees[q -> position--];
 
-	for(i = 1; i * 2 <= q -> position; i = child){
+    if(size(q) == 0) {
+        std::cout << "ERROR: Size == " << size(q) << std::endl;
+        exit(1);
+    }
+
+    HuffmanTree minElem = q -> trees[1];
+    HuffmanTree lastElem = q -> trees[q -> position--];
+
+    for(i = 1; i * 2 <= q -> position; i = child){
         child = i * 2;
-        if(child != q -> position && weight(q -> trees[child + 1]) < weight(q -> trees[child]))
+        if(child != q -> position && weight(q -> trees[child + 1]) < weight(q -> trees[child])) {
             child++;
+        }
 
         if(weight(lastElem) > weight(q -> trees[child])){
             q -> trees[i] = q -> trees[child];
@@ -69,7 +79,7 @@ HuffmanTree dequeue(PriorityQueue& q) {
         }
     }
 
-	q -> trees[i] = lastElem;
+    q -> trees[i] = lastElem;
 
-	return minElem;
+    return minElem;
 }
