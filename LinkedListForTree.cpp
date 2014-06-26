@@ -1,5 +1,10 @@
 #include "LinkedListForTree.h"
 
+//ACLARACION: Es el mismo codigo que las LinkedList para char, con sus mismas funcionalidades.
+//La diferencia es que en vez de ser listas de caracteres, estas
+//son listas de arboles. Se tuvo que hacer de esta manera ya que con lo que vimos
+//no podemos hacer que las listas sean "polimorficas"
+
 struct ListForTreeStr {
     ELEM_TYPE elem;
     ListForTree next;

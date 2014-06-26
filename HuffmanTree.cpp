@@ -16,6 +16,7 @@ struct HuffmanTreeStr {
     HuffmanTree rightTree;
 };
 
+//Crea un HuffmanTree sin caracter asociado
 HuffmanTree singletonWithoutCharacter(int w, HuffmanTree left, HuffmanTree right) {
     HuffmanTree newTree = new HuffmanTreeStr;
     newTree -> weight = w;
@@ -28,6 +29,7 @@ bool isNil(HuffmanTree tree) {
     return tree == NULL;
 }
 
+//Retorna true si ambos hijos del HuffmanTree son NULL
 bool isLeaf(HuffmanTree tree) {
     return (isNil(tree -> leftTree)) && (isNil(tree -> rightTree));
 }
@@ -44,6 +46,8 @@ HuffmanTree binary(HuffmanTree a, HuffmanTree b) {
 }
 
 void deleteHuffmanTree(HuffmanTree& t) {
+    //Para no usar la recursion, se iteran los arboles borrandose y guardando los
+    //hijos en una lista auxiliar de pendientes para poder iterarlos luego
     HuffmanTree current = t;
     ListForTree pendientes = NilForTree();
     mkSnoc(current, pendientes);
@@ -65,25 +69,6 @@ void deleteHuffmanTree(HuffmanTree& t) {
 int weight(HuffmanTree t) {
     return t -> weight;
 }
-
-//ZipTable buildTable(HuffmanTree t) {
-//    BitChain bitChain = emptyBitChain();
-//    ZipTable table = emptyZipTable();
-//
-//    if(isLeaf(t)) {
-//        add(table, t -> character, bitChain);
-//    } else {
-//        if(!isNil(t -> leftTree)) {
-//            append(bitChain, false);
-//            buildTable(t -> leftTree);
-//        }
-//
-//        if(!isNil(t -> rightTree)) {
-//            append(bitChain, true);
-//            buildTable(t -> rightTree);
-//        }
-//    }
-//}
 
 ZipTable buildTableAux(ZipTable zipTable, HuffmanTree tree, BitChain bitChain) {
     //Si es hoja, termino el recorrido y agrego el caracter con su cadena a la tabla

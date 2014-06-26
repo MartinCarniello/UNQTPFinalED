@@ -9,8 +9,10 @@ struct CharBagStr {
 CharBag emptyCharBag(int n) {
     CharBag newCharBag = new CharBagStr;
     newCharBag -> allCharacters = new int[n];
+    //Se recorre el array e inicializa todas las posiciones en cero
     for(int i = 0; i < n; i++)
         newCharBag -> allCharacters[i] = 0;
+    //Se crea una LinkedList para poder recorrer los chars que se fueron metiendo al bag
     newCharBag -> charactersToIterate = Nil();
     return newCharBag;
 }
@@ -22,7 +24,9 @@ void deleteCharBag(CharBag& b) {
 }
 
 void add(CharBag& b, unsigned char c) {
+    //Suma uno en la posicion indicada por el char
     b -> allCharacters[(int)c] = b -> allCharacters[(int)c] + 1;
+    //Agrega uno a la lista para recorrer solo si el char no estaba agregado
     if(b -> allCharacters[(int)c] == 1)
         mkSnoc(c, b -> charactersToIterate);
 }
@@ -31,8 +35,8 @@ int get(CharBag& b, unsigned char c) {
     return b -> allCharacters[(int)c];
 }
 
-
 struct CharBagIteratorStr {
+    //Recorrido es el struct de iterador de las LinkedList
     Recorrido iterator;
     int* allCharacters;
 };
@@ -46,6 +50,7 @@ CharBagIterator iterate(CharBag b) {
     return newCharBagIterator;
 }
 
+//De aca en adelante se delegan todos los metodos al iterador de LinkedList
 void deleteCharBagIterator(CharBagIterator& it) {
     finish(it -> iterator);
     delete(it);

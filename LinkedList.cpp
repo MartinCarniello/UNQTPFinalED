@@ -52,6 +52,11 @@ bool finished(Recorrido r) {
     return isNil(r -> current);
 }
 
+//Aunque se tiene una funcion "tkTail()" en las listas,
+//la misma no se utiliza para no destruirla, de esta manera
+//gano por el lado de que
+//logro avanzar al siguiente nodo sin romper la estructura
+//pero pierdo rompiendo la barrera de abstraccion
 void nextList(Recorrido& r) {
     r -> current = r -> current -> next;
 }
