@@ -1,6 +1,9 @@
 #include "CharBag.h"
 #include "LinkedList.h"
 
+//Invariante de representacion:
+//La lista para iterar no puede tener caracteres repetidos
+//El array de caracteres tiene que tener en todas sus posiciones numero mayores o iguales a cero
 struct CharBagStr {
     int* allCharacters;
     List charactersToIterate;

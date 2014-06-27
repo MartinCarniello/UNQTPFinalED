@@ -37,7 +37,6 @@ ZipTable buildZipTable(int n, Buffer buffer) {
 
         deleteCharBagIterator(it);
         deleteCharBag(bag);
-        cout << size(queue) << endl;
         deletePriorityQueue(queue);
         deleteHuffmanTree(completeTree);
 
@@ -76,8 +75,8 @@ int main() {
         Buffer buffer;
         int n = readBuffer("test.txt", buffer);
         if (n == 0) {
-                cout << "Empty file." << endl;
-                return 1;
+            cout << "Empty file." << endl;
+            return 1;
         }
 
         ZipTable table = buildZipTable(n, buffer);

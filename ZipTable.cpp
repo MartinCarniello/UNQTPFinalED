@@ -28,12 +28,18 @@ void remove(BitChain& b) {
 	b->bits.pop_back();
 }
 
+//MODIFICACION:
+//Modifique el recorrido del write, ya que como en el HuffmanTree cree el ZipTable
+//de manera recursiva, los bits me los da vuelta, entonces necesito recorrer el BitChain
+//de adelante hacia atras
 void write(BitChain b, ofstream& file) {
 	vector<bool> aux(b->bits);
-	while (!aux.empty()) {
-		file << aux.back();
-		aux.pop_back();
-	}
+	for(unsigned int i = 0; i < aux.size(); i++)
+    file << aux.at(i);
+//	while (!aux.empty()) {
+//		file << aux.back();
+//		aux.pop_back();
+//	}
 }
 
 void read(BitChain& b, ifstream& file) {
